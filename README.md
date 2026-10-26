@@ -16,14 +16,14 @@ in the engine module.
 
 ## Stack
 
-| Layer    | Technology |
-|----------|------------|
-| Backend  | Python 3.12 · FastAPI · Pandas · Uvicorn |
-| Engine   | `backend/app/engine/brain.py` — ordered regex/keyword rule table |
+| Layer    | Technology                                                                            |
+| -------- | ------------------------------------------------------------------------------------- |
+| Backend  | Python 3.12 · FastAPI · Pandas · Uvicorn                                              |
+| Engine   | `backend/app/engine/brain.py` — ordered regex/keyword rule table                      |
 | Parsing  | `backend/app/services/parser.py` — stdlib `csv` tokenizer + name-based column mapping |
-| Frontend | React 18 · Vite 5 · Tailwind CSS 3.4 (design-token violet/ink UI) |
-| Tests    | pytest — 133 tests (parser, engine, financial totals, API, export round-trip) |
-| Ops      | Docker images, docker-compose, GitHub Actions CI |
+| Frontend | React 18 · Vite 5 · Tailwind CSS 3.4 (design-token violet/ink UI)                     |
+| Tests    | pytest — 133 tests (parser, engine, financial totals, API, export round-trip)         |
+| Ops      | Docker images, docker-compose, GitHub Actions CI                                      |
 
 ## Project layout
 
@@ -114,11 +114,11 @@ backend service.
 Copy `.env.example` and set only what you need — every variable listed there
 is read by the code:
 
-| Variable | Read by | Default when unset |
-|----------|---------|--------------------|
-| `CORS_ORIGINS` | `app/main.py` | localhost ports 5173 and 4173 |
-| `MAX_UPLOAD_BYTES` | `app/api/routes.py` | 10485760 (10 MB) |
-| `VITE_API_BASE_URL` | `frontend/src/api.js` (build time) | same-origin `/api` |
+| Variable            | Read by                            | Default when unset            |
+| ------------------- | ---------------------------------- | ----------------------------- |
+| `CORS_ORIGINS`      | `app/main.py`                      | localhost ports 5173 and 4173 |
+| `MAX_UPLOAD_BYTES`  | `app/api/routes.py`                | 10485760 (10 MB)              |
+| `VITE_API_BASE_URL` | `frontend/src/api.js` (build time) | same-origin `/api`            |
 
 `MAX_UPLOAD_BYTES` is the authoritative limit and the server rejects anything
 larger with a readable 413. The dropzone repeats the 10 MB default locally so an
@@ -153,15 +153,15 @@ Header matching is case-insensitive, **accent-insensitive** (`BESCHREIBUNG`,
 slashes, parentheses and dots plus French/Italian apostrophes (`Date de
 l'opération` → `date de lopration`). A UTF-8 BOM is stripped.
 
-| Concept     | Recognized headers |
-|-------------|--------------------|
+| Concept     | Recognized headers                                                                                                                                                                                                   |
+| ----------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | Date        | `Date`, `Transaction Date`, `Posted/Posting Date`, `Value Date`, `Paid On`, `Date Paid`, `Transaction Time`, `Booking Date`, `Datum`, `Fecha`, `Date de l'opération`, `Data Transazionale`, `Data` (exact cell only) |
-| Description | `Description`, `Payee`, `Merchant`, `Merchant Name`, `Memo`, `Narrative`, `Details`, `Transaction/Card Description`, `Beschreibung`, `Omschrijving`, `Libellé`, `Descrizione`, `Descripción`, `Purpose` |
-| Amount      | `Amount`, `Transaction Amount`, `Value`, `Betrag`, `Bedrag`, `Importo`, `Importe`, `Montant` |
-| Debit       | `Debit(s)`, `Withdrawal(s)`, `Money Out`, `Paid Out`, `Outflow`, `Soll`, `Addebito`, `Uitgave`, `Cargo` (exact cell only) |
-| Credit      | `Credit(s)`, `Deposit(s)`, `Money In`, `Paid In`, `Inflow`, `Haben`, `Accredito`, `Ontvangst`, `Abono` |
-| Category    | `Category`, `Tax Category`, `Assigned Category`, `Categorie`, `Categoria` |
-| Status      | `Status`, `Review Status` |
+| Description | `Description`, `Payee`, `Merchant`, `Merchant Name`, `Memo`, `Narrative`, `Details`, `Transaction/Card Description`, `Beschreibung`, `Omschrijving`, `Libellé`, `Descrizione`, `Descripción`, `Purpose`              |
+| Amount      | `Amount`, `Transaction Amount`, `Value`, `Betrag`, `Bedrag`, `Importo`, `Importe`, `Montant`                                                                                                                         |
+| Debit       | `Debit(s)`, `Withdrawal(s)`, `Money Out`, `Paid Out`, `Outflow`, `Soll`, `Addebito`, `Uitgave`, `Cargo` (exact cell only)                                                                                            |
+| Credit      | `Credit(s)`, `Deposit(s)`, `Money In`, `Paid In`, `Inflow`, `Haben`, `Accredito`, `Ontvangst`, `Abono`                                                                                                               |
+| Category    | `Category`, `Tax Category`, `Assigned Category`, `Categorie`, `Categoria`                                                                                                                                            |
+| Status      | `Status`, `Review Status`                                                                                                                                                                                            |
 
 Date, Description and one of Amount / Debit / Credit are required. Anything
 else in the file is ignored. Exact alias matches win over substring matches,
@@ -277,13 +277,13 @@ engine, blank its `Category` (or set a value outside the taxonomy).
 
 ## API
 
-| Method | Path | Purpose |
-|--------|------|---------|
-| `POST` | `/api/statements` | Upload a statement (multipart `file`); returns `summary`, `transactions`, `warnings` |
-| `GET`  | `/api/statements/{id}` | Re-fetch a processed statement |
-| `PATCH`| `/api/statements/{id}/transactions/{tx_id}` | Manually reassign a category (marks the row reviewed) |
-| `GET`  | `/api/categories` | Category vocabulary for the UI dropdowns |
-| `GET`  | `/api/health` | Liveness + engine identity (`llm_used: false`) |
+| Method  | Path                                        | Purpose                                                                              |
+| ------- | ------------------------------------------- | ------------------------------------------------------------------------------------ |
+| `POST`  | `/api/statements`                           | Upload a statement (multipart `file`); returns `summary`, `transactions`, `warnings` |
+| `GET`   | `/api/statements/{id}`                      | Re-fetch a processed statement                                                       |
+| `PATCH` | `/api/statements/{id}/transactions/{tx_id}` | Manually reassign a category (marks the row reviewed)                                |
+| `GET`   | `/api/categories`                           | Category vocabulary for the UI dropdowns                                             |
+| `GET`   | `/api/health`                               | Liveness + engine identity (`llm_used: false`)                                       |
 
 ## Dashboard
 
@@ -319,7 +319,7 @@ engine, blank its `Category` (or set a value outside the taxonomy).
   entries in `brain.py` — list order is precedence.
 - Unknown merchants and opaque POS descriptions stay in **Needs Review**; the
   engine does not guess. The same applies to chargeback/dispute debits, whose
-  merchant text describes the *disputed purchase*, not the money movement.
+  merchant text describes the _disputed purchase_, not the money movement.
 - Refund-to-original-expense linking uses the matched merchant rule's category;
   it does not search the ledger for the originating charge.
 - Duplicate detection is same-day, same-normalized-description, same-amount.
@@ -329,3 +329,17 @@ engine, blank its `Category` (or set a value outside the taxonomy).
 
 See `DESIGN.md` for the decision policy and `AI_USAGE.md` for the no-LLM
 categorization constraint.
+
+## Screenshots
+
+### Landing Page
+
+![StatementIQ Landing Page](screenshots/landing%20page.png)
+
+### New Statement
+
+![Create a New Statement](screenshots/new%20statement.png)
+
+### Try Demo
+
+![StatementIQ Demo](screenshots/try%20demo.png)
