@@ -1,0 +1,113 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Declared directly so .skeleton works even when no animate-* utility pulls
+   the keyframes into the build. */
+@keyframes shimmer {
+  100% {
+    transform: translateX(100%);
+  }
+}
+
+@layer base {
+  html {
+    -webkit-text-size-adjust: 100%;
+  }
+
+  body {
+    @apply bg-[#fbfbfc] text-ink-900 antialiased;
+    font-feature-settings: 'cv11', 'ss01';
+    font-variant-numeric: tabular-nums;
+  }
+
+  ::selection {
+    @apply bg-brand-200 text-brand-900;
+  }
+
+  /* Visible, consistent keyboard focus everywhere. */
+  :where(button, a, input, select, textarea, [tabindex]):focus-visible {
+    @apply outline-none ring-2 ring-brand-500/70 ring-offset-2 ring-offset-white;
+  }
+}
+
+@layer components {
+  .card {
+    @apply rounded-2xl border border-black/[0.06] bg-white shadow-card;
+  }
+
+  .panel {
+    @apply rounded-2xl border border-black/[0.06] bg-white shadow-panel;
+  }
+
+  .label {
+    @apply text-2xs font-semibold uppercase tracking-label text-zinc-500;
+  }
+
+  .num {
+    font-variant-numeric: tabular-nums;
+  }
+
+  .btn {
+    @apply inline-flex select-none items-center justify-center gap-2 rounded-xl px-3.5 py-2
+      text-sm font-semibold transition-all duration-150 ease-spring disabled:pointer-events-none
+      disabled:opacity-50;
+  }
+
+  .btn-primary {
+    @apply btn bg-brand-600 text-white shadow-[0_1px_2px_rgba(16,24,40,0.12)]
+      hover:bg-brand-700 active:scale-[0.98];
+  }
+
+  .btn-secondary {
+    @apply btn border border-black/[0.08] bg-white text-ink-800 hover:bg-zinc-50
+      active:scale-[0.98];
+  }
+
+  .btn-ghost {
+    @apply btn text-zinc-600 hover:bg-zinc-100 hover:text-ink-900;
+  }
+
+  .chip {
+    @apply inline-flex items-center gap-1.5 rounded-full border border-black/[0.06]
+      bg-zinc-50 px-2 py-0.5 text-xs font-medium text-zinc-600;
+  }
+
+  .field {
+    @apply w-full rounded-xl border border-black/[0.08] bg-white px-3 py-2 text-sm
+      text-ink-800 placeholder:text-zinc-400 transition-colors hover:border-black/[0.14]
+      focus:border-brand-500 focus:outline-none focus:ring-2 focus:ring-brand-500/20;
+  }
+
+  .skeleton {
+    @apply relative overflow-hidden rounded-lg bg-zinc-100;
+  }
+
+  .skeleton::after {
+    @apply absolute inset-0 -translate-x-full bg-gradient-to-r from-transparent via-white/70 to-transparent;
+    content: '';
+    animation: shimmer 1.4s infinite;
+  }
+
+  /* Hairline separators that read as one continuous surface. */
+  .divide-hairline > * + * {
+    @apply border-t border-black/[0.05];
+  }
+}
+
+@layer utilities {
+  .text-balance {
+    text-wrap: balance;
+  }
+
+  .grid-pattern {
+    background-image: linear-gradient(rgba(255, 255, 255, 0.05) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(255, 255, 255, 0.05) 1px, transparent 1px);
+    background-size: 48px 48px;
+  }
+
+  .dot-pattern {
+    background-image: radial-gradient(rgba(120, 119, 142, 0.18) 1px, transparent 1px);
+    background-size: 18px 18px;
+  }
+}

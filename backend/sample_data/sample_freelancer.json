@@ -1,0 +1,19 @@
+{
+  "account": "Freelancer Checking ****4421",
+  "period": "2026-02",
+  "transactions": [
+    {"date": "2026-02-03", "description": "Client Payment - Nimbus Design Invoice 12", "amount": 1750.00},
+    {"date": "2026-02-05", "description": "Adobe Creative Cloud", "amount": -54.99},
+    {"date": "2026-02-07", "description": "Delta Air Lines 006-231845231", "amount": -389.60},
+    {"date": "2026-02-09", "description": "Gousto Weekly Box", "amount": -61.61},
+    {"date": "2026-02-11", "description": "Zelle to Landlord", "amount": -1200.00},
+    {"date": "2026-02-12", "description": "Square Payout", "amount": 980.00},
+    {"date": "2026-02-14", "description": "Blue Plate Oyster Co", "amount": -47.15},
+    {"date": "2026-02-16", "description": "Namecheap.com", "amount": -11.98},
+    {"date": "2026-02-18", "description": "Refund From Best Buy", "amount": 129.99},
+    {"date": "2026-02-20", "description": "ATM Withdrawal 5512", "amount": -200.00},
+    {"date": "2026-02-22", "description": "Vending Machine 114", "amount": -3.50},
+    {"date": "2026-02-24", "description": "Mailchimp Essentials", "amount": -99.00},
+    {"date": "2026-02-26", "description": "North Shore Storage Unit 214", "amount": -85.00}
+  ]
+}
